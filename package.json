@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "open-slide dev",
-    "build": "open-slide build",
+    "build": "open-slide build && for f in dist/index.html dist/assets/index-*.css dist/assets/*.js; do sed -i '' 's|/assets/|/open-slide-deck/assets/|g' \"$f\"; done && echo '<!DOCTYPE html><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0; url=/open-slide-deck/\"><link rel=\"canonical\" href=\"/open-slide-deck/\">' > dist/404.html",
     "preview": "open-slide preview",
+    "deploy": "npx gh-pages -d dist -r \"https://wayne1037-ship-it:$(gh auth token)@github.com/wayne1037-ship-it/open-slide-deck.git\"",
     "sync:skills": "open-slide sync:skills"
   },
   "dependencies": {
